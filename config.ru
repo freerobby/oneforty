@@ -1,3 +1,3 @@
 require 'seller'
 
-run Sintra::Application
+run Sinatra::Application
