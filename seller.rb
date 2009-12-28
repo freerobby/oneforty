@@ -4,7 +4,7 @@ require 'rest_client'
 require 'json'
 
 post '/sell' do
-  oneforty = RestClient::Resource.new(ENV['ONEFORTY_ENV'],
+  oneforty = RestClient::Resource.new("https://" + ENV['ONEFORTY_ENV'],
                                       :verify_ssl => OpenSSL::SSL::VERIFY_NONE)
 
   json = { :reference_code => params[:reference_code],
