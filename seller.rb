@@ -10,11 +10,11 @@ post '/sell' do
   json = { :reference_code => params[:reference_code],
            :developer_key  => ENV['DEVELOPER_KEY'] }
 
-  oneforty['/fulfillment/acknowledge'].post(json)
+  ack_response = JSON.parse(oneforty['/fulfillment/acknowledge'].post(json))
 
   json = { :reference_code       => params[:reference_code],
            :developer_key        => ENV['DEVELOPER_KEY'],
-           :buyer_twitter_handle => params[:buyer_email] }
+           :buyer_twitter_handle => ack_response['buyer_twitter_handle'] }
 
   oneforty['/fulfillment/complete'].post(json)
 
