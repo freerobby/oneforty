@@ -8,13 +8,13 @@ post '/sell' do
                                       :verify_ssl => OpenSSL::SSL::VERIFY_NONE)
 
   json = { :reference_code => params[:reference_code],
-           :developer_key  => ENV['DEVELOPER_KEY'] }.to_json
+           :developer_key  => ENV['DEVELOPER_KEY'] }
 
   oneforty['/fulfillment/acknowledge'].post(json)
 
   json = { :reference_code       => params[:reference_code],
            :developer_key        => ENV['DEVELOPER_KEY'],
-           :buyer_twitter_handle => params[:buyer_email] }.to_json
+           :buyer_twitter_handle => params[:buyer_email] }
 
   oneforty['/fulfillment/complete'].post(json)
 
