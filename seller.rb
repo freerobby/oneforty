@@ -16,7 +16,9 @@ post '/sell' do
            :developer_key        => ENV['DEVELOPER_KEY'],
            :buyer_twitter_handle => ack_response['buyer_twitter_handle'] }
 
-  oneforty['/fulfillment/complete'].post(json)
+  complete_response = oneforty['/fulfillment/complete'].post(json)
+  
+  status complete_response.code == 200 ? 200 : 500 # 200 from oneforty means we are all done!
 
   "Sold"
 end
